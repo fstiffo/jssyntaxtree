@@ -58,7 +58,7 @@ function isWhitespace(ch) {
 }
 
 function isControlCharacter(ch) {
-  const control_chars = ["[", "]", "¬", '"'];
+  const control_chars = ["[", "]", "¬", '`'];
   return control_chars.includes(ch);
 }
 
@@ -130,10 +130,10 @@ function parseString(input) {
 }
 
 function parseQuotedString(input) {
-  if (input.charAt(0) != '"') return [null, 0];
+  if (input.charAt(0) != '`') return [null, 0];
   let consumed = 1;
-  while (consumed < input.length && input.charAt(consumed) != '"') ++consumed;
-  if (input.charAt(consumed) != '"')
+  while (consumed < input.length && input.charAt(consumed) != '`') ++consumed;
+  if (input.charAt(consumed) != '`')
     throw 'Unterminated quoted string. Missing " after [' + input + "]";
   return [
     new Token(TokenType.QUOTED_STRING, input.substring(1, consumed)),
