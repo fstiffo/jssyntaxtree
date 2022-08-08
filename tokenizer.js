@@ -58,7 +58,7 @@ function isWhitespace(ch) {
 }
 
 function isControlCharacter(ch) {
-  const control_chars = ["[", "]", "_", '"'];
+  const control_chars = ["[", "]", "¬", '"'];
   return control_chars.includes(ch);
 }
 
@@ -78,7 +78,7 @@ function skipWhitespace(input) {
 }
 
 function parseControlCharacters(input) {
-  if (input.charAt(0) == "_") return [new Token(TokenType.SUBSCRIPT_PREFIX), 1];
+  if (input.charAt(0) == "¬") return [new Token(TokenType.SUBSCRIPT_PREFIX), 1];
   if (input.charAt(0) == "[") return [new Token(TokenType.BRACKET_OPEN), 1];
   if (input.charAt(0) == "]") return [new Token(TokenType.BRACKET_CLOSE), 1];
   return [null, 0];
